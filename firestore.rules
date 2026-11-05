@@ -1,0 +1,27 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function isAdmin() {
+      return signedIn() && request.auth.token.admin == true;
+    }
+    match /questions/{questionId} {
+      allow read: if signedIn() && resource.data.published == true;
+      allow write: if isAdmin();
+    }
+    match /answerKeys/{questionId} {
+      allow read, write: if false; // Only trusted Cloud Functions can access with Admin SDK.
+    }
+    match /subscriptionCodes/{code} {
+      allow read, write: if false; // Redeemed only by trusted Cloud Functions.
+    }
+    match /students/{uid} {
+      allow read: if signedIn() && request.auth.uid == uid;
+      allow write: if false;
+    }
+    match /attempts/{attemptId} {
+      allow read: if signedIn() && resource.data.studentUid == request.auth.uid;
+      allow write: if false;
+    }
+  }
+}

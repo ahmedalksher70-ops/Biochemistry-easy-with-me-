@@ -10,7 +10,7 @@ workflows:
         script: |
           set -e
           mkdir -p build_src
-          unzip -oq Biochemistry_Easy_with_Me_Cloud_Build.zip -d build_src
+          unzip -oq Biochemistry_Easy_with_Me_Clean_Android_Project.zip -d build_src
           PROJECT_DIR=$(find build_src -name settings.gradle.kts -print -quit | sed 's|/settings.gradle.kts$||')
           if [ -z "$PROJECT_DIR" ]; then
             echo "Android project not found"

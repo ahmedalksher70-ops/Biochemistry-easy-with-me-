@@ -1,22 +1,16 @@
 workflows:
   android-debug:
-    name: Biochemistry Easy with Me APK
+    name: Biochemistry Easy with Me - Android APK
     max_build_duration: 60
-    instance_type: mac_mini_m2
+    instance_type: linux_x2
     environment:
       java: 17
     scripts:
-      - name: Prepare Android project
+      - name: Configure Android SDK
         script: |
-          set -e
-          if [ -f Biochemistry_Easy_with_Me_Cloud_Build.zip ]; then
-            mkdir -p build_src
-            unzip -oq Biochemistry_Easy_with_Me_Cloud_Build.zip -d build_src
-          fi
-          PROJECT_DIR=$(find . -name settings.gradle.kts -not -path './.git/*' -print -quit | sed 's|/settings.gradle.kts$||')
-          test -n "$PROJECT_DIR"
-          cd "$PROJECT_DIR"
           echo "sdk.dir=$ANDROID_SDK_ROOT" > local.properties
+      - name: Build installable debug APK
+        script: |
           gradle --no-daemon assembleDebug
     artifacts:
-      - "**/build/outputs/apk/debug/*.apk"
+      - app/build/outputs/apk/debug/*.apk

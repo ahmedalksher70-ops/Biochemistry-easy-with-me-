@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "748819647528",
+    "project_id": "biochemistry-easy-with-me",
+    "storage_bucket": "biochemistry-easy-with-me.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:748819647528:android:b128439c727eaeff6db91d",
+        "android_client_info": {
+          "package_name": "com.biochem.easy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA93bdmGSk-eBEFODz1q1xpeL50JGeH9Gs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
